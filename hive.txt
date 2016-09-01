@@ -1,0 +1,13 @@
+CREATE EXTERNAL TABLE noaa1mx(wban INT, ndate STRING, time STRING, stationType STRING, skyCondition STRING, skyConditionFlag STRING, visibility INT,
+visibilityFlag INT, weatherType STRING, weatherTypeFlag STRING, dryBulbTempF INT, dryBulbTempFFlag INT, wetBulbTempF INT,
+wetBulbTempFFlag INT, wetBulbTempC DOUBLE, webBulbTempCFlag INT, dewPointF INT, dewPointFFlag INT, dewPointC INT, dewPointCFlag INT,
+relativeHumidity INT, relativeHumidityFlag INT, windSpeed DOUBLE, windSpeedFlag INT, windDirection STRING, windDirectionFlag INT,
+valueForWindCharacter STRING, valueForWindCharacterFlag INT, stationPressure DECIMAL, stationPressureFlag INT, pressureTendency INT,
+pressureTendencyFlag INT, pressureChange STRING, pressureChangeFlag INT, seaLevelPressure INT, seaLevelPressureFlag INT, recordType STRING,
+recordTypeFlag INT, hourlyPrecip DECIMAL, hourlyPrecipFlag INT, altimeter INT, altimeterFlag INT)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+LOCATION '/data/noaa1m';
+
+select ndate, AVG(dryBulbTempF) FROM noaa1mx GROUP BY ndate;
